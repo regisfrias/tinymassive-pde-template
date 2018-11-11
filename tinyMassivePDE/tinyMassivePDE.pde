@@ -1,7 +1,7 @@
 /*
   This is an independently created Processing template
   for the Tiny Massive festival (https://tinymassive.io/)
-  Author: Régis Frias
+  Author: Régis Frias (regisfrias.com)
   2018
 */
 
@@ -9,28 +9,58 @@
 IMPORTANT:
 The following 2 lines just make the project
 appear normal on computer screens.
-Use '1' instead for final output; */
+Use '1' instead for final output. */
 int screenScaleX = 10;
-int screenScaleY = 30;
+int screenScaleY = 23;
+
+// Turn this off (false) here
+// (or with keyboard '1')
+// for live output.
+boolean debug = true;
+
+// Constants
+// KEEP OUT!
+int LEFT_SCREEN_WIDTH = 39;
+int LEFT_SCREEN_HEIGHT = 9;
+int RIGHT_SCREEN_WIDTH = 38;
+int RIGHT_SCREEN_HEIGHT = 13;
+int RIGHT_SCREEN_POSITION = LEFT_SCREEN_WIDTH;
 
 void settings(){
   size(77 * screenScaleX, 13 * screenScaleY);
 }
 
 void setup(){
-  background(0);
 }
 
 void draw(){
+  background(100);
   scale(screenScaleX, screenScaleY);
   
+  // -----------------
   // Display reference
-  noStroke();
-  fill(0,0,100);
-  rect(0, 0, 39, 9);
-  
-  fill(100,0,0);
-  rect(39, 0, 38, 13);
+  if(debug){
+    noFill();
+    stroke(0,0,100);
+    for(int x = 0; x < LEFT_SCREEN_WIDTH; x ++){
+      for(int y = 0; y < LEFT_SCREEN_HEIGHT; y ++){
+        point(x, y);
+      }
+    }
+    
+    stroke(100,0,0);
+    for(int x = RIGHT_SCREEN_POSITION; x < RIGHT_SCREEN_WIDTH + RIGHT_SCREEN_POSITION; x ++){
+      for(int y = 0; y < RIGHT_SCREEN_HEIGHT; y ++){
+        point(x, y);
+      }
+    }
+    
+    fill(180);
+    textSize(3);
+    textAlign(CENTER, CENTER);
+    text("Left side", 0, 0, LEFT_SCREEN_WIDTH, LEFT_SCREEN_HEIGHT);
+    text("Right side", RIGHT_SCREEN_POSITION, 0, RIGHT_SCREEN_WIDTH, RIGHT_SCREEN_HEIGHT);
+  }
   // -----------------
 }
 
@@ -89,5 +119,10 @@ void keyPressed(){
       println("Joystick 2: generic button 2");
       break;
     /////////////////////////////////
+    
+    case '1':
+      debug = !debug;
+      println("Debug mode", debug);
+      break;
   }
 }
