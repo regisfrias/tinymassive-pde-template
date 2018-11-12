@@ -35,7 +35,6 @@ void setup(){
 }
 
 void draw(){
-  frame.setLocation(0, 200);
   background(100);
   scale(screenScaleX, screenScaleY);
   
