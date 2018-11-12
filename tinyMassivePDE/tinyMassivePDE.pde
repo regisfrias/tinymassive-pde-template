@@ -11,7 +11,7 @@ The following 2 lines just make the project
 appear normal on computer screens.
 Use '1' instead for final output. */
 int screenScaleX = 10;
-int screenScaleY = 23;
+int screenScaleY = 10;
 
 // Turn this off (false) here
 // (or with keyboard '1')
@@ -20,46 +20,42 @@ boolean debug = true;
 
 // Constants
 // KEEP OUT!
-int LEFT_SCREEN_WIDTH = 39;
-int LEFT_SCREEN_HEIGHT = 9;
-int RIGHT_SCREEN_WIDTH = 38;
-int RIGHT_SCREEN_HEIGHT = 13;
-int RIGHT_SCREEN_POSITION = LEFT_SCREEN_WIDTH;
+static final int LEFT_SCREEN_WIDTH = 39;
+static final int LEFT_SCREEN_HEIGHT = 9;
+static final int RIGHT_SCREEN_WIDTH = 38;
+static final int RIGHT_SCREEN_HEIGHT = 13;
+static final int RIGHT_SCREEN_POSITION = LEFT_SCREEN_WIDTH;
 
 void settings(){
-  size(77 * screenScaleX, 13 * screenScaleY);
+  size((LEFT_SCREEN_WIDTH + RIGHT_SCREEN_WIDTH) * screenScaleX, RIGHT_SCREEN_HEIGHT * screenScaleY);
 }
 
 void setup(){
+  surface.setLocation(0, 0);
 }
 
 void draw(){
+  frame.setLocation(0, 200);
   background(100);
   scale(screenScaleX, screenScaleY);
   
   // -----------------
   // Display reference
   if(debug){
-    noFill();
-    stroke(0,0,100);
+    noStroke();
+    fill(0,0,100);
     for(int x = 0; x < LEFT_SCREEN_WIDTH; x ++){
       for(int y = 0; y < LEFT_SCREEN_HEIGHT; y ++){
-        point(x, y);
+        rect(x, y, 0.9, 0.9);
       }
     }
     
-    stroke(100,0,0);
+    fill(100,0,0);
     for(int x = RIGHT_SCREEN_POSITION; x < RIGHT_SCREEN_WIDTH + RIGHT_SCREEN_POSITION; x ++){
       for(int y = 0; y < RIGHT_SCREEN_HEIGHT; y ++){
-        point(x, y);
+        rect(x, y, 0.9, 0.9);
       }
     }
-    
-    fill(180);
-    textSize(3);
-    textAlign(CENTER, CENTER);
-    text("Left side", 0, 0, LEFT_SCREEN_WIDTH, LEFT_SCREEN_HEIGHT);
-    text("Right side", RIGHT_SCREEN_POSITION, 0, RIGHT_SCREEN_WIDTH, RIGHT_SCREEN_HEIGHT);
   }
   // -----------------
 }
