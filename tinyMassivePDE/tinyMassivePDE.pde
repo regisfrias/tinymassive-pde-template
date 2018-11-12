@@ -10,8 +10,8 @@ IMPORTANT:
 The following 2 lines just make the project
 appear normal on computer screens.
 Use '1' instead for final output. */
-int screenScaleX = 10;
-int screenScaleY = 10;
+int screenScaleX = 15;
+int screenScaleY = 15;
 
 // Turn this off (false) here
 // (or with keyboard '1')
@@ -35,7 +35,7 @@ void setup(){
 }
 
 void draw(){
-  background(100);
+  background(0);
   scale(screenScaleX, screenScaleY);
   
   // -----------------
@@ -50,7 +50,7 @@ void draw(){
     }
     
     fill(100,0,0);
-    for(int x = RIGHT_SCREEN_POSITION; x < RIGHT_SCREEN_WIDTH + RIGHT_SCREEN_POSITION; x ++){
+    for(int x = RIGHT_SCREEN_POSITION; x < RIGHT_SCREEN_WIDTH + RIGHT_SCREEN_POSITION; x++){
       for(int y = 0; y < RIGHT_SCREEN_HEIGHT; y ++){
         rect(x, y, 0.9, 0.9);
       }
